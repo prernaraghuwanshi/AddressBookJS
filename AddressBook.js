@@ -1,4 +1,4 @@
-class AddressBook {
+class Contact {
     constructor(...params) {
         this.firstName = params[0];
         this.lastName = params[1];
@@ -89,13 +89,11 @@ class AddressBook {
     }
 }
 
-// Create valid contact
-let contact = new AddressBook("Prerna", "Raghuwanshi", "DBLane", "Bhopal", "Madhya Pradesh", "462003", "91 9475976187", "prerna4@gmail.com");
-console.log(contact.toString());
-
-// Create invalid contact
+// Create address book array
+let addressBookArr = new Array();
 try {
-    let invalidContact = new AddressBook("ally", "sd", "qw", "sd", "aa", "1122", "9999", "abc@.com");
+    addressBookArr.push(new Contact("Sonal", "Jain", "xyz apartments", "Bengaluru", "Karnataka", "444461", "91 8787865420", "srewd@yahoo.com"));
+    addressBookArr.push(new Contact("Priyal", "Tyagi", "qwerty lane", "Indore", "Madhya Pradesh", "989861", "91 1111111111", "something@gmail.com"));
 } catch (e) {
     console.error(e);
 }

@@ -88,7 +88,53 @@ class Contact {
             + " State: " + this.state + " Zip: " + this.zip + " Phone: " + this.phone + " Email: " + this.email;
     }
 }
+// Find a contact by firstName
+function findContactByName(firstName, addressBookArr) {
+    let contact;
+    addressBookArr.forEach(contactObj => {
+        if (contactObj.firstName == firstName) {
+            contact = contactObj;
+        }
+    });
+    return contact;
+}
 
+// Update contact
+function updateContact(attribute, value, contact) {
+    try {
+        switch (attribute) {
+            case "First Name":
+                contact.firstName = value;
+                break;
+            case "Last Name":
+                contact.lastName = value;
+                break;
+            case "Address":
+                contact.address = value;
+                break;
+            case "City":
+                contact.city = value;
+                break;
+            case "State":
+                contact.state = value;
+                break;
+            case "Zip":
+                contact.zip = value;
+                break;
+            case "Phone":
+                contact.phone = value;
+                break;
+            case "Email":
+                contact.email = value;
+                break;
+            default:
+                break;
+        }
+    } catch (error) {
+        console.log(error);
+        console.log("Unable to Update!");
+    }
+}
 // Create address book array
 let addressBookArr = new Array();
 try {
@@ -97,3 +143,8 @@ try {
 } catch (e) {
     console.error(e);
 }
+
+// Find Contact and edit it
+let contactToEdit = findContactByName("Sonal", addressBookArr);
+updateContact("Phone", "91 9434010859", contactToEdit);
+console.log(contactToEdit.toString());

@@ -202,19 +202,24 @@ function countByAttribute(attribute, addressBookArr) {
     let countMap = new Map();
     switch (attribute) {
         case "City":
-            let contactMap = viewContact("City", addressBookArr);
-            contactMap.forEach((key, value) => {
-                countMap.set(value, key.length);
+            let contactMapCity = viewContact("City", addressBookArr);
+            contactMapCity.forEach((value, key) => {
+                countMap.set(key, value.length);
             });
             break;
         case "State":
-            let contactMap = viewContact("State", addressBookArr);
-            contactMap.forEach((key, value) => {
-                countMap.set(value, key.length);
+            let contactMapState = viewContact("State", addressBookArr);
+            contactMapState.forEach((value, key) => {
+                countMap.set(key, value.length);
             });
             break;
     }
     return countMap;
+}
+
+// Sort by firstName
+function sortByName(addressBookArr) {
+    return addressBookArr.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1);
 }
 
 // Display AddressBook
@@ -280,4 +285,10 @@ let countMap = countByAttribute("City", addressBookArr);
 console.log("COUNT BY CITY/STATE");
 console.log(countMap);
 console.log("-----------------");
+
+// Sort by first name
+let addressBookSort = sortByName(addressBookArr);
+console.log("SORT BY FIRST NAME");
+displayAddressBook(addressBookSort);
+console.log("------------------");
 

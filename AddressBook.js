@@ -171,6 +171,32 @@ function searchContact(attribute, value, addressBookArr) {
     return contactArr;
 }
 
+// View person by city/state
+function viewContact(attribute, addressBook) {
+    let contactMap = new Map();
+    switch (attribute) {
+        case "City":
+            addressBook.forEach(contact => {
+                if (!contactMap.get(contact.city)) {
+                    contactMap.set(contact.city, [contact]);
+                } else {
+                    contactMap.get(contact.city).push(contact);
+                }
+            });
+            break;
+        case "State":
+            addressBook.forEach(contact => {
+                if (!contactMap.get(contact.state)) {
+                    contactMap.set(contact.state, [contact]);
+                } else {
+                    contactMap.get(contact.state).push(contact);
+                }
+            });
+            break;
+    }
+    return contactMap;
+}
+
 // Display AddressBook
 function displayAddressBook(addressBookArr) {
     return addressBookArr.forEach(contact => console.log(contact.toString()));
@@ -221,4 +247,11 @@ let contactInCity = searchContact("City", "Bengaluru", addressBookArr);
 console.log("SEARCH BY CITY/ STATE")
 displayAddressBook(contactInCity);
 console.log("--------------");
+
+// View Contact
+let contactMap = viewContact("State",addressBookArr);
+console.log("VIEW CONTACT BY CITY/ STATE");
+//console.log(contactMap);
+displayAddressBook(contactMap);
+console.log("-------------");
 

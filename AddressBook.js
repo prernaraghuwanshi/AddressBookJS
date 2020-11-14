@@ -157,6 +157,20 @@ function addContact(newContact, addressBookArr) {
         addressBookArr.push(newContact);
 }
 
+// Search contact in city/state
+function searchContact(attribute, value, addressBookArr) {
+    let contactArr;
+    switch (attribute) {
+        case "City":
+            contactArr = addressBookArr.filter(contact => contact.city == value);
+            break;
+        case "State":
+            contactArr = addressBookArr.filter(contact => contact.state == value);
+            break;
+    }
+    return contactArr;
+}
+
 // Display AddressBook
 function displayAddressBook(addressBookArr) {
     return addressBookArr.forEach(contact => console.log(contact.toString()));
@@ -201,4 +215,10 @@ console.log("----------------");
 console.log("ADDING DUPLICATE CONTACT")
 addContact(contactToAdd, addressBookArr);
 console.log("----------------");
+
+//Search contact
+let contactInCity = searchContact("City", "Bengaluru", addressBookArr);
+console.log("SEARCH BY CITY/ STATE")
+displayAddressBook(contactInCity);
+console.log("--------------");
 

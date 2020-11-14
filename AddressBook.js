@@ -135,11 +135,23 @@ function updateContact(attribute, value, contact) {
         console.log("Unable to Update!");
     }
 }
+
+// Delete contact
+function deleteContact(firstName, addressBookArr) {
+    let contactToDelete = findContactByName(firstName, addressBookArr);
+    return addressBookArr.filter(contact => contact != contactToDelete);
+}
+
+// Display AddressBook
+function displayAddressBook(addressBookArr) {
+    return addressBookArr.forEach(contact => console.log(contact.toString()));
+}
 // Create address book array
 let addressBookArr = new Array();
 try {
     addressBookArr.push(new Contact("Sonal", "Jain", "xyz apartments", "Bengaluru", "Karnataka", "444461", "91 8787865420", "srewd@yahoo.com"));
     addressBookArr.push(new Contact("Priyal", "Tyagi", "qwerty lane", "Indore", "Madhya Pradesh", "989861", "91 1111111111", "something@gmail.com"));
+    addressBookArr.push(new Contact("Sid", "Kapoor", "ABCDE apartments", "Bengaluru", "Karnataka", "440461", "91 2323265420", "sidkaps@yahoo.com"));
 } catch (e) {
     console.error(e);
 }
@@ -147,4 +159,13 @@ try {
 // Find Contact and edit it
 let contactToEdit = findContactByName("Sonal", addressBookArr);
 updateContact("Phone", "91 9434010859", contactToEdit);
+console.log("EDIT CONTACT");
 console.log(contactToEdit.toString());
+console.log("-----------------");
+
+// Delete contact
+addressBookArr = deleteContact("Priyal", addressBookArr);
+console.log("DELETE CONTACT");
+displayAddressBook(addressBookArr);
+console.log("---------------------");
+

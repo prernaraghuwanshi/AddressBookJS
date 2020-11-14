@@ -217,9 +217,23 @@ function countByAttribute(attribute, addressBookArr) {
     return countMap;
 }
 
-// Sort by firstName
-function sortByName(addressBookArr) {
-    return addressBookArr.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1);
+// Sort by firstName, city, state or zip
+function sortByAttribute(attribute, addressBookArr) {
+    switch (attribute) {
+        case "First Name":
+            return addressBookArr.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1);
+            break;
+        case "City":
+            return addressBookArr.sort((a, b) => (a.city > b.city) ? 1 : -1);
+            break;
+        case "State":
+            return addressBookArr.sort((a, b) => (a.state > b.state) ? 1 : -1);
+            break;
+        case "Zip":
+            return addressBookArr.sort((a, b) => (a.zip > b.zip) ? 1 : -1);
+            break;
+    }
+
 }
 
 // Display AddressBook
@@ -287,8 +301,27 @@ console.log(countMap);
 console.log("-----------------");
 
 // Sort by first name
-let addressBookSort = sortByName(addressBookArr);
+let addressBookNameSort = sortByAttribute("First Name", addressBookArr);
 console.log("SORT BY FIRST NAME");
-displayAddressBook(addressBookSort);
+displayAddressBook(addressBookNameSort);
 console.log("------------------");
+
+// Sort by city
+let addressBookCitySort = sortByAttribute("City", addressBookArr);
+console.log("SORT BY CITY");
+displayAddressBook(addressBookCitySort);
+console.log("------------------");
+
+// Sort by state
+let addressBookStateSort = sortByAttribute("State", addressBookArr);
+console.log("SORT BY STATE");
+displayAddressBook(addressBookStateSort);
+console.log("------------------");
+
+// Sort by zip
+let addressBookZipSort = sortByAttribute("Zip", addressBookArr);
+console.log("SORT BY ZIP");
+displayAddressBook(addressBookZipSort);
+console.log("------------------");
+
 

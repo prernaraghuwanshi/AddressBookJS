@@ -148,6 +148,15 @@ function count(addressBookArr) {
     return ans;
 }
 
+// Add contact to address book
+function addContact(newContact, addressBookArr) {
+    if (addressBookArr.find(contact => contact.firstName == newContact.firstName)) {
+        console.log("Contact exists");
+    }
+    else
+        addressBookArr.push(newContact);
+}
+
 // Display AddressBook
 function displayAddressBook(addressBookArr) {
     return addressBookArr.forEach(contact => console.log(contact.toString()));
@@ -180,4 +189,16 @@ let countEntries = count(addressBookArr);
 console.log("COUNT ENTRIES");
 console.log(countEntries);
 console.log("------------------");
+
+// Add contact
+let contactToAdd = new Contact("Priya", "Tyagi", "qwerty lane", "Indore", "Madhya Pradesh", "989861", "91 1111111111", "something@gmail.com");
+addContact(contactToAdd, addressBookArr);
+console.log("ADDING CONTACT");
+displayAddressBook(addressBookArr);
+console.log("----------------");
+
+// Add duplicate contact
+console.log("ADDING DUPLICATE CONTACT")
+addContact(contactToAdd, addressBookArr);
+console.log("----------------");
 

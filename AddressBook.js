@@ -142,6 +142,12 @@ function deleteContact(firstName, addressBookArr) {
     return addressBookArr.filter(contact => contact != contactToDelete);
 }
 
+// Number of contacts in address book
+function count(addressBookArr) {
+    let ans = addressBookArr.reduce((count) => count += 1, 0);
+    return ans;
+}
+
 // Display AddressBook
 function displayAddressBook(addressBookArr) {
     return addressBookArr.forEach(contact => console.log(contact.toString()));
@@ -168,4 +174,10 @@ addressBookArr = deleteContact("Priyal", addressBookArr);
 console.log("DELETE CONTACT");
 displayAddressBook(addressBookArr);
 console.log("---------------------");
+
+// Count entries
+let countEntries = count(addressBookArr);
+console.log("COUNT ENTRIES");
+console.log(countEntries);
+console.log("------------------");
 

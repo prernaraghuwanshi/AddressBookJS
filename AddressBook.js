@@ -197,6 +197,26 @@ function viewContact(attribute, addressBook) {
     return contactMap;
 }
 
+// Count by city/state
+function countByAttribute(attribute, addressBookArr) {
+    let countMap = new Map();
+    switch (attribute) {
+        case "City":
+            let contactMap = viewContact("City", addressBookArr);
+            contactMap.forEach((key, value) => {
+                countMap.set(value, key.length);
+            });
+            break;
+        case "State":
+            let contactMap = viewContact("State", addressBookArr);
+            contactMap.forEach((key, value) => {
+                countMap.set(value, key.length);
+            });
+            break;
+    }
+    return countMap;
+}
+
 // Display AddressBook
 function displayAddressBook(addressBookArr) {
     return addressBookArr.forEach(contact => console.log(contact.toString()));
@@ -249,9 +269,15 @@ displayAddressBook(contactInCity);
 console.log("--------------");
 
 // View Contact
-let contactMap = viewContact("State",addressBookArr);
+let contactMap = viewContact("State", addressBookArr);
 console.log("VIEW CONTACT BY CITY/ STATE");
-//console.log(contactMap);
+console.log(contactMap);
 displayAddressBook(contactMap);
 console.log("-------------");
+
+// Count by city/state
+let countMap = countByAttribute("City", addressBookArr);
+console.log("COUNT BY CITY/STATE");
+console.log(countMap);
+console.log("-----------------");
 
